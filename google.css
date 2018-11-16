@@ -1,0 +1,20 @@
+containerBox {
+  display: block;
+  line-height: 1.24;
+  margin: 6px -32px 0 2px;
+  padding-bottom: 7px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  border: none;
+  border-radius: 2px;
+}
+
+titleBox {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  font-size: 24px;
+  color: #222;
+  position: relative;
+  display: block;
+}
