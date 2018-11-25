@@ -3,6 +3,19 @@ var getContainer = function() {
   return container;
 }
 
+var element = document.createElement('div');
+
+function decodeHTMLEntities(str) {
+  if(str && typeof str === 'string') {
+    str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+    str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+    element.innerHTML = str;
+    str = element.textContent;
+    element.textContent = '';
+  }
+  return str;
+}
+
 var createTextDiv = function(titleString, textString, subReditText, urlText, imageLink) {
   var title = document.createElement("span");
   title.appendChild(document.createTextNode(titleString));
@@ -30,7 +43,7 @@ var createTextDiv = function(titleString, textString, subReditText, urlText, ima
   }
 
   var text = document.createElement("span")
-  text.appendChild(document.createTextNode(textString));
+  text.innerHTML = textString;
   text.style.paddingTop="15px"
   text.style.paddingLeft="15px"
   text.style.paddingRight="15px"
@@ -74,7 +87,8 @@ if (q != null)  {
         }
         var number = Math.floor(Math.random() * json.data.children.length);
         var title = json.data.children[number].data.title;
-        var text = json.data.children[number].data.selftext;
+        var text = json.data.children[number].data.selftext_html;
+        text = decodeHTMLEntities(text);
         var subRedit = json.data.children[number].data.subreddit_name_prefixed;
         var link = json.data.children[number].data.permalink;
         var image = json.data.children[number].data.url;
